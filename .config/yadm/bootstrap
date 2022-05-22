@@ -1,0 +1,17 @@
+#!/bin/env bash
+
+# Shell
+## Install ZSH
+if command -v apt &> /dev/null
+then
+	sudo apt install zsh
+fi
+
+## Install Oh-My-ZSH
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Languages
+## NodeJS
+### NVM
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
