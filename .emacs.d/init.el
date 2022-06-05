@@ -1,72 +1,46 @@
-;; Initialization
-;;;; Set default coding system
-(set-default-coding-systems 'utf-8)
+;; Elisp files
+(add-to-list 'load-path (concat user-emacs-directory "elisp"))
 
-;; Package managment
-;;;; Intialize package sources
-(require 'package)
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-			 ("melpa-stable" . "https://stable.melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")
-			 ("elpa" .  "https://elpa.gnu.org/packages/")))
+;; Utils functions
+(require 'utils)
 
-(package-initialize)
-(unless (package-installed-p 'use-package) (package-install 'use-package))
-(require 'use-package)
+;; Base configuration
+(require 'base)
 
-;; Interface
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(setq inhibit-startup-message t)
-(menu-bar-mode -1)
-(setq visible-bell t)
-(column-number-mode)
-
-;; Packages
-;;;; LSP mode
-(use-package lsp-mode
-  :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (XXX-mode . lsp)
-         ;; if you want which-key integration
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
-;; optionally
-(use-package lsp-ui :commands lsp-ui-mode)
-;;;; Dashboard
-(use-package dashboard
-  :ensure t
-  :config
-  (setq dashboard-startup-banner 2)
-  (dashboard-setup-startup-hook))
-
+;; Org
+(require 'org)
 
 ;; Theme
-(use-package doom-themes
-  :ensure t
-  :config
-  ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-one t)
+(require 'theme)
 
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  (doom-themes-neotree-config)
-  ;; or for treemacs users
-  (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
-  (doom-themes-treemacs-config)
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config))
+;; Interface
+(require 'interface)
+
+;; Completion
+(require 'completion)
+
+;; Startup screen
+(require 'startup-screen)
+
+;; Workspace
+(require 'workspace)
+
+;; Editing
+(require 'editing)
+
+;; VSC
+(require 'vsc)
+
+;; LSP
+(require 'lsp)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(doom-themes use-package)))
+ '(package-selected-packages
+   '(lsp-ivy lsp-ui lsp-mode which-key use-package projectile page-break-lines doom-themes dashboard counsel all-the-icons)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -1,0 +1,2 @@
+;; Provide module
+(provide 'interface)
