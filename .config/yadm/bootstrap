@@ -1,14 +1,14 @@
 #!/bin/env bash
 
-# Shell
-## ZSH
-if command -v apt &> /dev/null
-then
-	sudo apt install zsh
-fi
+# Install FD
+sudo apt install fd-find
+sudo ln -s $(which fdfind) /usr/bin/fd
 
-## Oh-My-ZSH
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# Install fonts
+./parts/fonts-install
+
+# Install Oh-My-ZSH
+./parts/zsh-install.sh
 
 # Languages
 ## NodeJS

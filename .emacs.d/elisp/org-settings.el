@@ -9,4 +9,4 @@
 (setq org-default-notes-file "~/org/agenda/organizer.org")
 
 ;; Provide module
-(provide 'org)
+(provide 'org-settings)
